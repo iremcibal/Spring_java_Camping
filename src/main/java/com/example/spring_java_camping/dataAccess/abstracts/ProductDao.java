@@ -2,6 +2,7 @@ package com.example.spring_java_camping.dataAccess.abstracts;
 
 
 import com.example.spring_java_camping.entities.concretes.Product;
+import com.example.spring_java_camping.entities.concretes.dtos.ProductWithCategoryDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -34,5 +35,18 @@ public interface ProductDao extends JpaRepository<Product,Integer> {
     // :/? parametre demek
     List<Product> getByNameAndCategory(String productName,int categoryId);
     //select * from products where product_name=bişey and categoryId=bişey
+
+
+    @Query("select new com.example.spring_java_camping.entities.concretes.dtos.ProductWithCategoryDto" +
+            "(p.id,p.productName,c.categoryName) " +
+            "from Category c inner join c.products p")
+    //Bunları bir araya getir
+    List<ProductWithCategoryDto> getProductWithCategoryDetails();
+    //Kategorilerle ilişkilendirilmiş productlardan çek
+    //select p.productId,p.productName,c.categoryName from Category c inner join Product p
+    //on c.categoryId = p.categoryId
+
+
+
 
 }
