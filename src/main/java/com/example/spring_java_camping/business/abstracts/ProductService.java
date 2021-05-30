@@ -3,11 +3,13 @@ package com.example.spring_java_camping.business.abstracts;
 import com.example.spring_java_camping.core.results.DataResult;
 import com.example.spring_java_camping.core.results.Result;
 import com.example.spring_java_camping.entities.concretes.Product;
+import com.example.spring_java_camping.entities.concretes.dtos.ProductWithCategoryDto;
 
 import java.util.List;
 
 public interface ProductService {
     DataResult<List<Product>> getAll();
+
     DataResult<List<Product>> getAllSorted(); //Sıralama şeklini belirlediğimiz kısım
     DataResult<List<Product>> getAll(int pageNo,int pageSize); //Sayfalama tekniğini kullanıyoruz
     Result add(Product product);
@@ -18,4 +20,6 @@ public interface ProductService {
     DataResult<List<Product>> getByProductNameContains(String productName);
     DataResult<List<Product>> getByProductNameStartsWith(String productName);
     DataResult<List<Product>> getByNameAndCategory(String productName,int categoryId);
+
+    DataResult<List<ProductWithCategoryDto>> getProductWithCategoryDetails();
 }

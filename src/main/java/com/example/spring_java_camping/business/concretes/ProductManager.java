@@ -6,6 +6,7 @@ import com.example.spring_java_camping.core.results.Result;
 import com.example.spring_java_camping.core.results.SuccessDataResult;
 import com.example.spring_java_camping.dataAccess.abstracts.ProductDao;
 import com.example.spring_java_camping.entities.concretes.Product;
+import com.example.spring_java_camping.entities.concretes.dtos.ProductWithCategoryDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -92,4 +93,14 @@ public class ProductManager implements ProductService {
         return new SuccessDataResult<List<Product>>(this.productDao.getByNameAndCategory(productName,categoryId)
                 ,"Data Listelendi");
     }
+
+    @Override
+    public DataResult<List<ProductWithCategoryDto>> getProductWithCategoryDetails() {
+        return new SuccessDataResult<List<ProductWithCategoryDto>>
+                (productDao.getProductWithCategoryDetails(),"Data listelendi." );
+
+    }
+
+
+
 }

@@ -4,6 +4,7 @@ import com.example.spring_java_camping.business.abstracts.ProductService;
 import com.example.spring_java_camping.core.results.DataResult;
 import com.example.spring_java_camping.core.results.Result;
 import com.example.spring_java_camping.entities.concretes.Product;
+import com.example.spring_java_camping.entities.concretes.dtos.ProductWithCategoryDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -55,4 +56,15 @@ public class ProductsController {
     public DataResult<List<Product>> getAllSorted(){
         return productService.getAllSorted();
     }
+
+
+
+    @GetMapping("/getProductWithCategoryDetails")
+    public DataResult<List<ProductWithCategoryDto>> getProductWithCategoryDetails(){
+        return productService.getProductWithCategoryDetails();
+    }
+
+
+
+
 }
